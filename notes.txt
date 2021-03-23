@@ -20,6 +20,9 @@ VisBug
 Trang web lấy ảnh miễn phí: Unsplash
 
 ############################
+Bài 6: Thẻ inline vs block
+- thẻ inline: span... độ rộng bằng với nội dung mà nó chứa. nếu có nhiều thẻ inline chúng sẽ cùng nằm trên 1 hàng. bị hạn chế về css.
+- thẻ block: div, p... có độ rộng full 100% thẻ cha chứa nó
 
 Bài 23: Tìm hiểu về box-sizing trong CSS
   - box-sizing: border-box;
