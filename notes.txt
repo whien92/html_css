@@ -1,0 +1,247 @@
+1. Các extensions nên cài: 
+
+Prettier
+Material Icon Theme
+Live Server
+Bracket Pair Colorizer
+Highlight Matching Tag
+SCSS Intellisence
+htmltagwrap
+HTML to CSS Autocompletion
+HTML Snippets
+Live Server Preview
+Auto Complete Tag
+
+2. Các extensions hay cho Chrome:
+
+Eye Dropper
+Page Ruler Redux
+VisBug
+Trang web lấy ảnh miễn phí: Unsplash
+
+Bài 23: Tìm hiểu về box-sizing trong CSS
+  - box-sizing: border-box;
+    box-sizing: content-box;
+  - apply: 
+    * {
+      box-sizing: border-box;
+    }       
+Bài 25 26: Fonts & Text
+  - hiển thị dấu ... khi nội dung quá dài, sử dụng 3 thuộc tính
+    {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  - hiển thị dấu ... ở hàng thứ 3 khi nội dung quá dài, sử dụng 3 thuộc tính
+    {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  - word-break: break-word;
+    word-break: break-all;
+Bài 27: Các thuộc tính liên quan đến hình ảnh
+  - Để canh giữa 1 phần tử inline => dùng text-align: center
+  - Để canh giữa 1 image => display image as "inline-block" => dùng 1 div bọc ngoài và cho div này có text-align: center
+  - Để canh giữa 1 phần tử block => margin: 0 auto (top = bottom = 0; left = right = auto)
+  - Fit image không bị méo:
+    .image {
+      width: 50rem;
+      height: 50rem;
+      object-fit: cover;
+      object-position: center;
+    }
+
+Bài 31: Gradien cho nền và chữ
+  - Syntax: background-image: linear-gradient(direction, color-stop1, color-stop2...);
+  - Ví dụ: background-image: linear-gradient(45deg, #e66465, #9198e5);
+  - Direction: 
+      + to bottom (default):  
+      + to right
+      + to bottom right (diagonal)
+      + ...
+  - Gradient for text, apply:
+      .title {
+        margin-top: 20px;
+        display: inline-block;
+        
+        background-image: linear-gradient(to right, #e66465, #9198e5);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        font-size: 50px;
+        font-weight: bold;
+      }
+  - 2 backgounds, 1 background image and 1 background gradient:
+      background: linear-gradient(to right, rgb(230, 100, 101, 0.7), rgba(145, 152, 229, 0.7)), 
+                  url("https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80") no-repeat center right / cover;;
+      
+Bài 35: Shadow
+  - box-shadow: x, y, blur, scale, color;
+    .shadow {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.356);
+    }
+  - text-shadow: x, y, blur, color;
+    .text-shadow {
+      font-size: 50px;
+      font-weight: bold;
+      text-shadow: -7px -3px 4px rgba(0, 0, 0, 0.4);
+    }
+Bài 36: Sử dụng biến
+ - Khai báo:
+  :root {
+    --primary-color: #e66465;
+    --secondary-color: #9198e5
+  }
+  - Usage:
+  {
+    background-color: var(--primary-color);
+  }
+  - Override:
+  {
+    --primary-color: #e19625;
+    background-color: var(--primary-color); 
+  }
+
+Bài 37: Độ ưu tiên CSS:
+  - Css tính từ dưới lên
+  - tag (h1, div, span...) < class < id < inline < important
+
+Bài 38: Child selector
+  :first-child
+  :last-child
+  :nth-child(2)
+  :nth-child(4)
+  :nth-last-child(2) /* tính từ phần tử cuối, lấy child thứ 2*/
+  :not(:first-child) /* tất cả trừ phần tử ...first-child*/
+  :nth-child(odd)
+  :nth-child(even)
+  :nth-child(2n + 1) /* phần tử thứ 2n + 1: 1 3 5... */
+
+  :first-of-type
+  :last-of-type
+
+Bài 40: Combinator:
+  - <h3 class="title">Title</h3>
+    <div class="content1">Content 1</div>
+    <div class="content2">Content 2</div>
+  - Apply: 
+    .title + .content1 {
+      color: greenyellow;
+    }
+
+    .title + .content1 + .content2 {
+      color: blueviolet;
+    }
+
+    .title ~ .content2 {
+      color: burlywood;
+    }
+  - Dấu + là liền kề, dáu ~ có thể cách xa nhau nhưng phải cùng cấp.
+
+Bài 41: Advanced selectors:
+  a[href^="https"] { /* ^= bắt đầu = */
+    color: green;
+  }
+
+  a[href$="vn"] { /* $= kết thúc = */
+    color: purple;
+  }
+
+  a[href*="abc"] { /* *= có chứa */
+    color: orange;
+  }
+
+  div[data-title="value"] { /* = chính xác = */
+    color: red;
+  }
+
+  ::first-letter
+  ::first-line
+
+Bài 42: Basic transition
+  - Syntax:
+    .example {
+      transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+    }
+  - Apply:
+    div {
+      transition: background-color 0.5s ease;
+      background-color: red;
+    }
+    div:hover {
+      background-color: green;
+    }
+  - transition-timing-function: 
+      ease - specifies a transition effect with a slow start, then fast, then end slowly (this is default)
+      linear - specifies a transition effect with the same speed from start to end
+      ease-in - specifies a transition effect with a slow start
+      ease-out - specifies a transition effect with a slow end
+      ease-in-out - specifies a transition effect with a slow start and end
+      cubic-bezier(n,n,n,n) - lets you define your own values in a cubic-bezier function
+
+Bài 43: Transform
+  - syntax:
+    .element {
+      transform: scale(2, .5); /* kéo giãn theo chiều x 2lần, chiều x 0.5 lần */
+    }
+  - values:
+    scale(): Affects the size of the element. 
+            This also applies to the font-size, padding, height, and width of an element, too. It’s also a a shorthand function for the scaleX and scaleY functions.
+    skewX() and skewY(): Tilts an element to the left or right, like turning a rectangle into a parallelogram. 
+                        skew() is a shorthand that combines skewX() and skewY by accepting both values.
+    translate(): Moves an element sideways or up and down.
+    rotate(): Rotates the element clockwise from its current position.
+
+Bài 52: :before and :after 
+
+Bài 62: Flexbox
+  - flex-direction: row | row-reverse | column | column-reverse;
+      row (default): left to right
+      row-reverse: right to left
+
+  - flex-wrap: nowrap | wrap | wrap-reverse;
+      nowrap (default): all flexitems wil be on one line
+      wrap: items will wrap onto multiple lines, from top to bottom
+
+  - flex-flow: shorthand for the flex-direction and flex-wrap, default value is "row nowrap"
+
+  - align-item: flex-start | flex-end | flex-center | flex-stretch | baseline
+      stretch (default): stretch to fill the container (still respect min-width/max-width)
+      flex-start / start / self-start: items are placed at the start of the cross axis.
+        The difference between these is subtle, and is about respecting the flex-direction rules or the writing-mode rules.
+      flex-end / end / self-end: items are placed at the end of the cross axis. 
+        The difference again is subtle and is about respecting flex-direction rules vs. writing-mode rules.
+      center: items are centered in the cross-axis
+      baseline: items are aligned such as their baselines align
+
+  - align-self: auto | flex-start | flex-end | center | baseline | stretch;
+      This allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
+
+  - justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe;
+      flex-start (default): items are packed toward the start of the flex-direction.
+      flex-end: items are packed toward the end of the flex-direction.
+      start: items are packed toward the start of the writing-mode direction.
+      end: items are packed toward the end of the writing-mode direction.
+      left: items are packed toward left edge of the container, unless that doesn’t make sense with the flex-direction, then it behaves like start.
+      right: items are packed toward right edge of the container, unless that doesn’t make sense with the flex-direction, then it behaves like start.
+      center: items are centered along the line
+      space-between: items are evenly distributed in the line; first item is on the start line, last item on the end line
+      space-around: items are evenly distributed in the line with equal space around them. Note that visually the spaces aren’t equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
+      space-evenly: items are distributed so that the spacing between any two items (and the space to the edges) is equal.
+  - flex-shrink: 0 là không cho phép co lại, dùng khi cái width nó luôn cố định ở vị trí đó. Default la 1 => cho phép co lại.
+  - flex-grow: 1 cho phép giãn ra, chiếm hết phần còn lại. Mặc định là 0. Thường đi cùng thuộc tính flex-basis
+Bài 76: Responsive
+  - Breakpoints: 320 480 768 1024 1280 1366 1440 1600 1920
+  - min-width: 1024 =>  >= 1024
+  - max-width: 1023 => <= 1023
+  - @media screen and (min-width: 1024px) {}
+  - @media screen and (max-width: 1023px) {}

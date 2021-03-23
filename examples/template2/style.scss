@@ -1,0 +1,133 @@
+$primary_color: #42a7fe;
+$background_color: #f3faff;
+$secondary_color: #00c899;
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  line-height: 1.4;
+  background: $background_color;
+}
+
+.author {
+  display: flex;
+  max-width: 1000px;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &__image {
+    height: 40rem;
+    object-fit: cover;
+    object-position: center;
+    width: 35%;
+  }
+
+  &__info {
+    width: 65%;
+    background: rgb(231, 224, 224);
+    padding: 2rem;
+  }
+
+  &__name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+  }
+
+  &__desc {
+    margin-bottom: 3rem;
+  }
+
+  &__socials, &__contact{
+    display: flex;
+    
+    &-item {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@mixin flexbox($align: flex-start, $justify: flex-start, $direction: row, $wrap: nowrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+.post {
+  @include flexbox(stretch);
+  padding: 2rem;
+  margin-left: -2rem;
+  
+  &__item {
+    width: calc(33.33% - 2rem);
+    margin-left: 2rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 2;
+  }
+
+  &__image {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+  }
+
+  &__content {
+    @include flexbox(flex-start, flex-start, column);
+    height: calc(100% - 15rem);
+    padding: 2rem;
+    border: 1px solid #eee;
+  }
+
+  &_author {
+    @include size(5rem);
+    border-radius: 5rem;
+    object-fit: cover;
+    margin-top: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .author {
+    flex-direction: column;
+    height: auto;
+    padding: 0 2rem;
+
+    &__image{
+      width: 100%;
+      height: 30rem;
+      object-position: center;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    &__info {
+      width: 100%;
+      border-radius:  0 0 1rem 1rem;
+    }
+  }
+}

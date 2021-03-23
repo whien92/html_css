@@ -1,0 +1,50 @@
+$primary_color: #42a7fe;
+$background_color: #f3faff;
+$secondary_color: #00c899;
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flexbox($align: flex-start, $justify: flex-start, $direction: row, $wrap: nowrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  line-height: 1.4;
+  background: $background_color;
+}
+
+.post {
+  display: flex;
+  align-items: stretch;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1rem;
+
+  &__left,
+  &__right {
+    width: calc(100% - 1rem);
+  }
+}
